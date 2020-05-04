@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Achu",
+    "RSVP": "yes",
+    "pluseOne": false
+  },
+  {
+    "name": "Anu",
+    "RSVP": "yes",
+    "pluseOne": true
+  }
+]
