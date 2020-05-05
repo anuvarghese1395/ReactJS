@@ -22,7 +22,6 @@ class listData extends Component {
                         <td>{name}</td>
                         <td>{RSVP}</td>
                         <td>{plusOne}</td>
-
                     </tr>
                 )
 
