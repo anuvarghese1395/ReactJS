@@ -36,8 +36,8 @@ class listData extends Component {
     render() {
         return (
             <div>
-                <h1 id='title'>React Dynamic Table</h1>
-                <table id='invitation'>
+                <h1 className='title'>React Dynamic Table</h1>
+                <table className='invitation'>
                     <tbody>
                         <tr>{this.renderTableHeader()}</tr>
                         {this.renderTableData()}
