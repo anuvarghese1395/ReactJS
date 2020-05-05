@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import weddingData from '../data/weddingInvitation.json';
-import './listData.css';
+import './invitationList.css';
 
-class listData extends Component {
+class invitationList extends Component {
   renderTableHeader() {
     let header = Object.keys(weddingData[0])
     return header.map((key, index) => {
@@ -42,4 +42,4 @@ class listData extends Component {
     )
   }
 }
-export default listData;
+export default invitationList;
