@@ -3,12 +3,18 @@
     "id":1,
     "name": "Achu",
     "RSVP": "yes",
-    "pluseOne": false
+    "plusOne": "false"
   },
   {
     "id":2,
     "name": "Anu",
     "RSVP": "yes",
-    "pluseOne": true
+    "plusOne": "true"
+  },
+  {
+    "id":3,
+    "name": "Beno",
+    "RSVP": "no",
+    "plusOne": "true"
   }
 ]
