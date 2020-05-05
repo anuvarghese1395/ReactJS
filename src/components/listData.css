@@ -27,4 +27,9 @@
     background-color: #4CAF50;
     color: white;
   }
+  .invitation thead{
+    border: 1px solid #ddd;
+    padding: 8px;
+
+  }
   
