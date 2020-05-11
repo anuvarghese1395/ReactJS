@@ -1,7 +1,7 @@
 import React from "react";
 
 function addEvent(props) {
-  const { name, description, onChange, onSave } = props;
+  const { name, description, onChange, onSave,displayData } = props;
 
   return (
     <div>
@@ -23,6 +23,9 @@ function addEvent(props) {
       </div>
       <div>
         <button onClick={onSave}>SAVE</button>
+      </div>
+      <div>
+      <button onClick={displayData}>Display</button>
       </div>
     </div>
   );
