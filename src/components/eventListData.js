@@ -1,27 +1,32 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function eventListData(props){
-   return <div className="App">
-    <div className="left">
-      <table>
-        <tbody>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>description </th>
-        </tr>
-        {props.eventData.map((eventData) => {
-          return (
+function eventListData(props) {
+  return (
+    <div className="App">
+      <div className="left">
+        <table>
+          <tbody>
             <tr>
-              <td>{eventData._id}</td>
-              <td>{eventData.name}</td>
-              <td>{eventData.description}</td>
+              <th>ID</th>
+              <th>Name</th>
+              <th>description </th>
             </tr>
-          );
-        })}
-        </tbody>
-      </table>
+            {props.eventData.map((eventData) => {
+              return (
+                <tr>
+                  <td>
+                    <Link to={`/event/${eventData._id}`}>{eventData._id}</Link>
+                  </td>
+                  <td>{eventData.name}</td>
+                  <td>{eventData.description}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
+  );
 }
 export default eventListData;

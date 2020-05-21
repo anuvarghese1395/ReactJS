@@ -1,56 +1,87 @@
 import React from "react";
 import axios from "axios";
+import {Switch, Route,Link } from "react-router-dom";
 
 import AddEvent from "../components/addEvent";
-import EventListData from "../components/eventListData";
+import ListEvent from "../components/eventListData";
 
 class Event extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", description: "", eventData: [], showList: false };
+    this.state = { event: {}, eventData: [] };
   }
 
   handleEventChange = (key, value) => {
-    this.setState({ ...this.state, [key]: value });
+    this.setState({
+      event: { ...this.state.event, [key]: value },
+    });
+  };
+  componentDidMount = () => {
+    this.loadAndShowEventList();
   };
 
   handleEventSave = () => {
     axios
       .post("http://localhost:5000/api/event", {
-        name: this.state.name,
-        description: this.state.description,
+        ...this.state.event,
       })
       .then(() => {
         console.log("Success");
-        this.setState({ name: "", description: "" });
+        this.setState({ event: {} });
       })
       .catch((e) => console.log("Error on save", e));
   };
+
   loadAndShowEventList = () => {
-    this.setState({showList:true})
     axios.get("http://localhost:5000/api/event").then((res) => {
       const eventData = res.data;
-      console.log(eventData);
       this.setState({ eventData });
+    });
+  };
+
+  loadEvent = (id) => {
+    axios.get(`http://localhost:5000/api/event/${id}`).then((res) => {
+      const event = res.data;
+      this.setState({ event });
     });
   };
 
   render() {
     return (
       <div>
-        <button onClick={()=>this.setState({showList:false})}>Add Event</button>
-        <button onClick={this.loadAndShowEventList}>List Event</button>
-        {!this.state.showList ? (
-          <AddEvent
-            name={this.state.name}
-            description={this.state.description}
-            onChange={this.handleEventChange}
-            onSave={this.handleEventSave}
-            displayData={this.loadEventList}
-          />
-        ) : (
-          <EventListData eventData={this.state.eventData} />
-        )}
+        <Link
+          onClick={() => {
+            this.setState({ event: {} });
+          }}
+          to="/event"
+        >
+          AddEvent
+        </Link>
+        <br />
+        <Link onClick={this.loadAndShowEventList} to="/events">
+          ListEvent
+        </Link>
+
+        <div className="App">
+          <Switch>
+            <Route
+              path="/event/:id?"
+              children={({ match }) => (
+                <AddEvent
+                  event={this.state.event}
+                  onChange={this.handleEventChange}
+                  onSave={this.handleEventSave}
+                  id={match.params.id}
+                  loadEvent={this.loadEvent}
+                />
+              )}
+            ></Route>
+
+            <Route path="/events">
+              <ListEvent eventData={this.state.eventData} />
+            </Route>
+          </Switch>
+        </div>
       </div>
     );
   }

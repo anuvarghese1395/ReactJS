@@ -29,6 +29,7 @@ class invitationList extends Component {
     });
   }
   render() {
+
     return (
       <React.Fragment>
         <h1 className="title">Invitation List Table</h1>

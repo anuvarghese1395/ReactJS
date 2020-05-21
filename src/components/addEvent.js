@@ -1,7 +1,10 @@
 import React from "react";
 
 function addEvent(props) {
-  const { name, description, onChange, onSave,displayData } = props;
+  const { event, onChange, onSave, displayData, id, loadEvent } = props;
+  const { name = "", description = "" } = event;
+
+  if (id && id!==event._id) loadEvent(id);
 
   return (
     <div>
@@ -11,21 +14,22 @@ function addEvent(props) {
       </div>
       <div>
         <input
-          onChange={(event) => onChange("name", event.target.value)}
+          onChange={(e) => onChange("name", e.target.value)}
           type="text"
           value={name}
-        ></input>
+        />
       </div>
       <div>
         <textarea
-          onChange={(event) => onChange("description", event.target.value)}
-          value={description}/>
+          onChange={(e) => onChange("description", e.target.value)}
+          value={description}
+        />
       </div>
       <div>
         <button onClick={onSave}>SAVE</button>
       </div>
       <div>
-      <button onClick={displayData}>Display</button>
+        <button onClick={displayData}>Display</button>
       </div>
     </div>
   );
